@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart File Organizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>📁 Smart File Organizer</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button type="submit">Upload & Organize</button>
+    </form>
+
+    <p class="msg">{{ message }}</p>
+
+    <h2>📊 File Statistics</h2>
+    <ul>
+        {% for folder, count in stats.items() %}
+            <li>{{ folder }}: {{ count }} files</li>
+        {% endfor %}
+    </ul>
+
+    <h2>📂 Organized Files</h2>
+    {% for folder, file_list in files.items() %}
+        <h3>{{ folder }}</h3>
+        <ul>
+            {% for file in file_list %}
+                <li>{{ file }}</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</div>
+
+</body>
+</html>
